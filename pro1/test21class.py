@@ -1,6 +1,6 @@
 kor = 100 # 모듈의 멤버 : 전역변수
 
-def abc():
+def abc():   # 바깥쪽 일반함수 
     kor = 0 # 함수 내의 지역변수
     print('모듈의 멤버 함수')
 
@@ -10,7 +10,7 @@ class My:
     #def __init__(self):  초기화 작업이 없는 경우 생성자는 생략 가능 
     #   pass
 
-    def abc(self):
+    def abc(self):     # my class의 abc 메소드 
         print('My 클래스 멤버 메소드')
 
     def show(self):
@@ -22,7 +22,7 @@ class My:
 
 
 myObj = My()   # 생성자 호출
-myObj.show()   
+myObj.show()     # myobj안에 kot 있음?->없어서 my class에 있는 클래스 멤버 변수 80
 print('-----------')
 
 myObj2=My()
