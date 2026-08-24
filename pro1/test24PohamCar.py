@@ -34,7 +34,13 @@ if __name__ == "__main__":
 
 
     print()
-    suji = PohamCar("미스터 수지")
+    suji = PohamCar("미스 수지")
     suji.turnHandle(-20)
     print(suji.ownerName, "의 회전량은", suji.turnShowMessage, " " + \
         str(suji.Handle.quantity))
+
+
+    suji.turnHandle(0)
+    print(suji.ownerName, "의 회전량은", suji.turnShowMessage, "0")
+
+
