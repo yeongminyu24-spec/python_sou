@@ -4,14 +4,12 @@ class CoinIN:   # 커피 객체(자판기에 보관될 클래스)
 
 
     def __init__(self, coin=0, change=0):  # 객체로부터 값을 입력하게끔 근데 초기값을 설정해준거
-    
+        self.price=200    
         self.coin=coin
         self.change=change
         
-
     def culc(self, CupCount):
-
-        self.price=200
+        
         self.CupCount=CupCount
         
         self.change = self.coin-self.CupCount*self.price # 잔돈은 (내가 넣은 금액)-(내가 원하는 커피 잔 수)*200
@@ -34,9 +32,9 @@ class Machine:
 
     
     def __init__(self):
-        self.Machine=CoinIN()   # 클래스의 포함
+        self.Machine=CoinIN()   # 클래스의 포함관계 
 
-    def StartMachine(self):
+    def ShowData(self):
         print('-'*30)
         self.Machine.coin=int(input("동전을 입력하세요 : "))
         
@@ -47,4 +45,4 @@ class Machine:
 
 
 if __name__ == "__main__":
-    Machine().StartMachine()
+    Machine().ShowData()
