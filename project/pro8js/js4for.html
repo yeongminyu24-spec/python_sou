@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>     <!--<!DOCTYPE html> 있어야 html-5이다. 없으면 html이다.-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <h2>*반복문 for(초기값;조건;증가값;) *</h2>
+    <script>
+        //for(let a =1; a<=5; a=a+1){
+        //for(let a =1; a<=5; a+=1){
+        //for(let a =1; a<=5; ++a){
+        //for(a =1; a<=5; a++){        //  블록 안에 있어서 a는 지역변수 
+        //    document.write("a 값은 " + a + "<br>");
+        //}
+        //document.write("for 블럭 수행 후 a 값은 " + a + "<br>");  // 이거 수행 안되는 이유는 a가 지역변수(let)라서 
+        let a=1;  // a는 전역 변수, 블록 밖에 있어서
+        for(a=1; a<=5; a++){    // a는 지역 변수}
+            document.write("a 값은 " + a + "<br>");
+        }
+        document.write("for 블럭 수행 후 a 값은 " + a + "<br>");
+
+        document.write("<br>");
+        for(let a =3; a<11; a+=2){    // 증가치가 2
+            document.write("a 값은" +a + "<br>")
+            
+        }
+
+        document.write("<br>다중 for <br>");
+        for(let i=1; i <=3;  i++){
+
+            document.write("i 값은 ==>" + i + "&nbsp;&nbsp;");
+            for(let j =1 ; j <=4; j++){
+                document.write("j : ", + j+ "&nbsp;&nbsp;");
+            }
+            document.write("<br>")
+            }
+            document.write("<br>1~10까지의 정수의 합<br>");
+            let hap = 0;
+            for(let su=1; su <=10; su++){
+                hap = hap + su; // hap +=su
+            }
+            document.write(hap);
+
+            document.write("<br>1~100까지의 정수 중 2의 배수이나 5의 배수가 아닌 수의 합<br>");
+            // == : 느슨한 동등 비교로 타입을 자동 변환한 후에 값만 비교
+                // === : 엄격한 일치 비교로 데이터 타입이 모두 같아야 함 
+                document.write(10 == "10"); // true    "10" 을 10으로 변환한다
+                document.write(10 === "10");   //false
+            let sum =0;
+            for(let i=1; i <=100; i++){
+                //if (i%2 == 0 && i%5 != 0){ //비권장 
+                if (i%2 == 0 && i%5 !== 0){
+                    sum += i;   // ;는 줘도 되고 안줘도 되고
+                }
+            }
+            document.write(sum);
+
+            document.write("<hr>2~9 구구단 출력 - table에 출력<br>");
+            document.write("<table class ='table table-bordered border-dark'>");   // 부트스탭에 들어가서 뭘 할 지 생각하기 
+            for(let a=2; a<10; a++){
+                document.write("<tr>");
+                for(let b=1; b<10; b++){
+                    document.write("<td>");
+                    document.write(a + "*" + b + "=" + a*b);
+                    document.write("</td>");    
+                }
+
+                document.write("</tr>");
+            }
+    </script>
+</body>
+</html>

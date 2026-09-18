@@ -1,0 +1,57 @@
+<!DOCTYPE html>     <!--<!DOCTYPE html> 있어야 html-5이다. 없으면 html이다.-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3> * 조건 판단문 if *</h3>
+    <script>
+        //let ave = prompt("평균 점수 입력 : ", "10");
+        //document.write("ave : ", ave);
+        let ave=85;
+        if (ave >=90)
+document.write("점수 : " + ave + "이므로 <b style = 'color: blue' >우수</b>");
+
+        else if(ave >=70)
+document.write("점수 : " + ave + "이므로 <b style = 'color: red' >보통</b>");
+
+        else
+document.write("점수 : " + ave + "이므로 <b style = 'color: cyan' >저조</b>");
+    </script>
+    <br>* 조건 판단문 * <br/>
+    <script>
+        let result = "B"   // 학점 기억 변수
+        switch(result) {
+            case "A":{
+
+            document.write("매우 우수");
+            document.write("good")
+            break;
+            }
+
+            case "B":{
+            document.write("우수");  break;       
+            }
+
+            
+            case "C":{
+            document.write("보통");  break;       
+            }
+
+            
+            case "D":            
+            case "F":{
+            document.write("불량");  break;           // D로 가면 흘러 내려간다(break 가 없기 때문에 )
+            }
+
+            default : document.write("기타");
+
+        }
+    </script>
+
+
+
+</body>
+</html>
