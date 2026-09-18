@@ -98,6 +98,23 @@ document.write("<hr>");
 let nums = [1,2,3,4];
 let [a1,a2,a3,a4] = nums; 
 document.write('${a1}${a2}${a3}${a4}')
+
+
+document.write("<br>")
+// 전개 연산자 : ...
+// 배열이나 객체의 요소를 펼쳐서 복사하거나 결합할 때 사용
+let fruits = ['apple','peach','melon'];
+let imsi = [...fruits];   // 배열 요소를 펼쳐 새로운 배열에 저장
+document.write(imsi, " ", imsi.length);
+document.write(fruit === imsi); // false
+let fr = fruits; // 주소 치환
+document.write(fruit === fr);    //  true
+
+document.write("<br>")
+const a = ['apple','peach'];
+const b = ['melon','banana'];
+const c = [...a, ...b];   // 배열 합침
+
 </script>   
     
 </body>

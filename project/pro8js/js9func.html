@@ -1,0 +1,58 @@
+<!DOCTYPE html>     <!--<!DOCTYPE html> 있어야 html-5이다. 없으면 html이다.-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+ES6부터는 화살표 함수(arrow function)라는 새로운 문법 방식으로 함수를 만들 수 있게 되었다.
+화살표 함수는 => 기호를 사용하여 function 키워드를 생략한다 <br>
+함수 표현식 보다 단순한 문법으로 함수 처릭 가능해진다. <br>
+형식 : let 변수 = (매개변수1, ...) => {표현식}
+<br>
+    <script>
+        // 참고 : 'use strict';는  javascript를 엄격 모드(strict mode)로 실행하도록 하는 선언
+        'use strict';
+
+        //a =10;     // 넌 안돼~~
+        let a =10;   // 넌 잘 돼
+        console.log(a);
+        // <script type="module"> 하면 'use strict';  자동 적용됨
+
+        function hap0(a,b){
+            return a+b;
+        }
+        document.write(hap0(3,4));
+        niceFunc = hap0;
+        document.write(niceFunc(3,4));
+
+        document.write("<br>");
+        //let double1 = (n) => {return n * 2};
+        let double1 = n => {return n * 2.5};
+        document.write(`<br>결과는 ${double1(3)}`);
+        let hap1 = function(a,b){    // 함수 이름 X
+            return a+b;
+        }
+
+        let sumFunc = (a,b) => {   // function sumFunc(a,b) {......}
+            
+        }
+        document.write(hap1(3,4));
+
+        // 사칙연산 함수
+        let calcFunc = (a,b,op)=> {
+            if(op === "+") return a+b;
+            else if(op === "-") return a-b;
+            else if(op === "/") return a/b;
+            else return 0;
+        };
+        document.write(calcFunc(10,5,"+"));
+        // 급여가 300이상인 직원들만 선택
+        const highpay= employees.filter(emp=>emp.pay >=300);
+        document.write("highpay : ",highpay);   
+        console.log(highpay)
+    </script>
+</body>
+</html>
