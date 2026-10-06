@@ -9,12 +9,26 @@ def index():
 
 @app.route('/api/friend')
 def api_friendFunc():
-    name=request.args.get('name', '').strip(),
+    name=request.args.get('name', '').strip()
     age_str=request.args.get('age', '').strip()
 
     # 입력 검증
     if not name:
         return jsonify({"ok":False, "error":"name us required"}), 400 #  400 : Bad Request
+
+    if not age_str.isdigit():
+        return jsonify({"ok":False,"error":"age is required"}), 400
+
+    age=int(age_str)
+    age_group = f"{(age // 10) * 10 }대" # 23->20대
+
+    return jsonify({
+        "ok":True,
+        "name":name,
+        "age":age,
+        "age_group":age_group,
+        "message":f"{name}님은 {age}살 {age_group}입니다"
+    })
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000);

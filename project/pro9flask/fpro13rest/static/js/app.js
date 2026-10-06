@@ -24,11 +24,19 @@ $("#sendBtn").addEventListener("click", async()=> {  // 비동기 처리
             headers : {"Accept":"application/json"}
         })
 
-        if (!res.ok) {
-            throw new Error(`HTTP ${res.status}`);
+       const data = await res.json();   // 응답 본문을 JSON으로 파싱해서 JS 객체화
+       //  $("#result").textContent = JSON.stringify(data, null, 2);
+
+        if(!res.ok || data.ok === false){
+            $("#result").innerHTML = `<span class="error"> 에러 : ${data.error} </span>`;
         }
-        const data = await res.json();   // 응답 본문을 JSON으로 파싱해서 JS 객체화
-        $("#result").textContent = JSON.stringify(data, null, 2);
+
+        $("#result").innerHTML = `
+            <div>이름: ${data.name}</div>
+            <div>나이: ${data.age}</div>
+            <div>연령대: ${data.age_group}</div>
+            <div>메세지: ${data.message}</div>
+            `;
 
     }catch(err){
         $("#result").textContent = `요청 오류 : ${err.message}`;
