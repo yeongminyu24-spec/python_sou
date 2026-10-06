@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제2</title>
+
+    <!-- Axios 사용을 위해 필요 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        window.onload = () => {
+            document.querySelector("#btnFetch").onclick = funcFetch;
+            document.querySelector("#btnAxios").onclick = funcAxios;
+        }
+
+
+        // 공통 출력 함수
+        function showCustomers(data, title){
+
+            let output = `<h3>${title}</h3>`;
+
+            output += `
+                <table>
+                    <tr>
+                        <th>고객명</th>
+                        <th>고객전화</th>
+                        <th>성별</th>
+                    </tr>
+            `;
+
+            data.forEach(item => {
+
+                let color;
+
+                if(item.gender === "남"){
+                    color = "orange";
+                }else{
+                    color = "blue";
+                }
+
+                output += `
+                    <tr>
+                        <td style="color:${color}">
+                            ${item.name}
+                        </td>
+                        <td>${item.tel}</td>
+                        <td>${item.gender}</td>
+                    </tr>
+                `;
+            });
+
+            output += `</table>`;
+
+            document.querySelector("#result").innerHTML = output;
+        }
+
+
+        // ID / PWD 확인
+        function checkLogin(){
+
+            const id = document.querySelector("#id").value;
+            const pwd = document.querySelector("#pwd").value;
+
+            if(id !== "python" || pwd !== "123"){
+                document.querySelector("#result").innerHTML =
+                    "ID 또는 PWD가 틀렸습니다.";
+
+                return false;
+            }
+
+            return true;
+        }
+
+
+        // 1. fetch + then 방식
+        function funcFetch(){
+
+            if(!checkLogin()){
+                return;
+            }
+
+            const result = document.querySelector("#result");
+
+            result.innerHTML = "데이터를 불러오는 중...";
+
+            fetch("gogekdata.json")
+
+                .then(response => {
+
+                    if(!response.ok){
+                        throw new Error(
+                            `HTTP 오류 : ${response.status}`
+                        );
+                    }
+
+                    return response.json();
+                })
+
+                .then(data => {
+
+                    console.log("fetch 결과 :", data);
+
+                    if(!Array.isArray(data)){
+                        throw new Error(
+                            "JSON 데이터가 배열이 아닙니다."
+                        );
+                    }
+
+                    showCustomers(
+                        data,
+                        "fetch then 결과"
+                    );
+                })
+
+                .catch(error => {
+
+                    result.innerHTML =
+                        "오류 발생 : " + error.message;
+
+                });
+        }
+
+
+        // 2. Axios 방식
+        function funcAxios(){
+
+            if(!checkLogin()){
+                return;
+            }
+
+            const result = document.querySelector("#result");
+
+            result.innerHTML = "데이터를 불러오는 중...";
+
+            axios.get(
+                "gogekdata.json",
+                {
+                    timeout:3000
+                }
+            )
+
+            .then(response => {
+
+                console.log(
+                    "axios response :",
+                    response
+                );
+
+                const data = response.data;
+
+                if(!Array.isArray(data)){
+                    throw new Error(
+                        "JSON 데이터가 배열이 아닙니다."
+                    );
+                }
+
+                showCustomers(
+                    data,
+                    "Axios 결과"
+                );
+
+            })
+
+            .catch(error => {
+
+                result.innerHTML =
+                    "오류 발생 : " + error.message;
+
+            });
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <h3>문제2)</h3>
+
+    <h3>직원정보 입력</h3>
+
+    ID :
+    <input type="text" id="id">
+
+    <br>
+
+    PWD :
+    <input type="password" id="pwd">
+
+    <br><br>
+
+    <button id="btnFetch">
+        fetch then 관리고객 출력
+    </button>
+
+    <button id="btnAxios">
+        axios 관리고객 출력
+    </button>
+
+    <br><br>
+
+    <div>
+        id : python
+        <br>
+        pwd : 123
+    </div>
+
+    <hr>
+
+    <div id="result"></div>
+
+</body>
+</html>
